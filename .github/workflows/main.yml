@@ -1,0 +1,27 @@
+name: MLProject CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mlflow-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.7'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r MLProject/requirements.txt
+
+      - name: Run MLflow Project
+        run: |
+          mlflow run MLProject
