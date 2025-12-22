@@ -1,5 +1,3 @@
-name: penguins_project
-
-entry_points:
-  main:
-    command: "python modelling.py"
+- name: Run MLflow Project
+  run: |
+    mlflow run ./MLProject --no-conda
