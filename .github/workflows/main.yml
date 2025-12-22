@@ -6,22 +6,22 @@ on:
       - main
 
 jobs:
-  mlflow-run:
+  train:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
 
-      - name: Set up Python
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12.7'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install -r MLProject/requirements.txt
+          pip install mlflow pandas numpy scikit-learn seaborn matplotlib
 
       - name: Run MLflow Project
         run: |
-          mlflow run MLProject --env-manager=virtualenv
+          mlflow run ./MLProject --env-manager=virtualenv
