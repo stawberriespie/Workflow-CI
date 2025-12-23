@@ -3,10 +3,8 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
 mlflow.set_experiment("Penguins_Classification")
 
-# Load data
 data = pd.read_csv("penguins_preprocessing.csv")
 
 X = data.drop("species", axis=1)
@@ -16,7 +14,6 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-# autolog
 mlflow.autolog()
 
 with mlflow.start_run():
